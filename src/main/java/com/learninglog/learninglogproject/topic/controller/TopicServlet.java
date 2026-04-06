@@ -13,27 +13,36 @@ import java.sql.Timestamp;
 @WebServlet("/topic")
 public class TopicServlet extends HttpServlet {
     @Override
-    protected  void doGet(HttpServletRequest req, HttpServletResponse resp)
-        throws ServletException, IOException {
-        req.getRequestDispatcher("pages/addTopic.jsp").forward(req,resp);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        req.getRequestDispatcher("pages/addTopic.jsp").forward(req, resp);
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp);
         String action = req.getParameter("action");
-        if(action.equals("addTopic")){
-            String topicName = req.getParameter("topicName");
-            int userId = Integer.parseInt(req.getParameter("userId"));
-            Timestamp createdDate = Timestamp.valueOf(req.getParameter("createdDate"));
+        if (action.equals("add")) {
+
+            String topicName = req.getParameter("topic-name");
+            int userId = Integer.parseInt(req.getParameter("user-id"));
+            System.out.println(req.getParameter("user-id"));
+            Timestamp createdDate = new Timestamp(System.currentTimeMillis());
 
             try {
                 TopicDao dao = new TopicDao();
                 boolean result = dao.insertTopic(topicName, userId, createdDate);
-                if(result){}
-                else {}
+                if (result) {
+                    //success
+                } else {
+                    //failed
+                }
             } catch (Exception e) {
-
+                // failed
             }
+
+        } else if (action.equals("edit")) {
+
         }
     }
 }

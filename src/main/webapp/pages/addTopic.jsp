@@ -16,16 +16,16 @@
   if(errorMsg==null){
     errorMsg="";
   }
-  User userObj = (User) request.getAttribute("user");
+  User userObj= (User) session.getAttribute("user");
   int userId = 0;
-    if(userObj!=null){
-        userId = userObj.getId();
-    }
+  if(userObj != null){
+    userId=userObj.getId();
+  }
 %>
 <p style="color: red"><%= errorMsg %></p>
 <form method="post" action="topic">
   <label>Action</label>: <input type="text" value="add" name="action"><br>
-  <label>User Id</label>: <input type="text" value="<%=userId%>" name="user-id" disabled><br>
+  <label>User Id</label>: <input type="text" value="<%=userId%>" name="user-id" readonly><br>
   <label>Topic Name</label>: <input type="text" value="" name="topic-name"><br>
   <button>Add Topic</button>
 </form>
