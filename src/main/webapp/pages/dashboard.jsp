@@ -20,7 +20,10 @@
     <br>
     Id: <%= user.getId() %>
 </h1>
-<a href="topic">Add Topic</a>
+
+<a href="topic">
+    <button type="button">Add Topic</button>
+</a>
 </body>
 
 </html>

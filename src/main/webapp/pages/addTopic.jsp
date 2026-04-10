@@ -1,4 +1,5 @@
-<%@ page import="com.learninglog.learninglogproject.user.model.User" %><%--
+<%@ page import="com.learninglog.learninglogproject.user.model.User" %>
+<%--
   Created by IntelliJ IDEA.
   User: Dell
   Date: 4/3/2026
@@ -28,5 +29,8 @@
   <label>Topic Name</label>: <input type="text" value="" name="topic-name"><br>
   <button>Add Topic</button>
 </form>
+<a href="topic?page=list">
+  <button type="button">View topics</button>
+</a>
 </body>
 </html>
