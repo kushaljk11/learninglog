@@ -8,7 +8,17 @@
 --%>
 <html>
 <head>
-  <title>Title</title>
+  <title>Add Topic</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    .card { max-width: 520px; border: 1px solid #ddd; border-radius: 8px; padding: 16px; }
+    .field { margin-bottom: 12px; }
+    label { display: block; margin-bottom: 6px; font-weight: 600; }
+    input[type="text"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; }
+    .actions { display: flex; gap: 10px; margin-top: 10px; }
+    button, .link-btn { padding: 8px 12px; border: 1px solid #bbb; background: #f6f6f6; border-radius: 6px; cursor: pointer; text-decoration: none; color: #111; }
+    .error { color: #b00020; margin-bottom: 10px; }
+  </style>
   </head>
 <body>
 <%
@@ -22,15 +32,23 @@
     userId=userObj.getId();
   }
 %>
-<p style="color: red"><%= errorMsg %></p>
-<form method="post" action="topic">
-  <label>Action</label>: <input type="text" value="add" name="action"><br>
-  <label>User Id</label>: <input type="text" value="<%=userId%>" name="user-id" readonly><br>
-  <label>Topic Name</label>: <input type="text" value="" name="topic-name"><br>
-  <button>Add Topic</button>
-</form>
-<a href="topic?page=list">
-  <button type="button">View topics</button>
-</a>
+<div class="card">
+  <h2>Add Topic</h2>
+  <% if (!errorMsg.isEmpty()) { %>
+    <p class="error"><%= errorMsg %></p>
+  <% } %>
+  <form method="post" action="topic">
+    <input type="hidden" value="add" name="action">
+    <input type="hidden" value="<%=userId%>" name="user-id">
+    <div class="field">
+      <label for="topic-name">Topic Name</label>
+      <input id="topic-name" type="text" value="" name="topic-name" placeholder="e.g., Java Collections" required>
+    </div>
+    <div class="actions">
+      <button type="submit">Add Topic</button>
+      <a class="link-btn" href="topic?page=list">View Topics</a>
+    </div>
+  </form>
+</div>
 </body>
 </html>
